@@ -1,9 +1,15 @@
-import React from 'react';
+import React, { useState } from 'react';
 import './EventPlanner.css'; // Import CSS file for styling
 import Footer from './Footer';
 
 const EventPlanner = () => {
     const footerInfo = "This is dynamic info passed from parent to child as a prop."
+    const[active, setActive] = useState(true);
+
+    const changeState = () => {
+        setActive(!active);
+    };
+
     return (
         <div className="event-planner-container">
             <header>
@@ -17,7 +23,10 @@ const EventPlanner = () => {
                     birthdays to corporate meetings, we've got you covered.
                 </p>
 
-                <button className="get-started-button">Get Started</button>
+                <button className="get-started-button" onClick={changeState}>Get Started</button>
+                {active && (
+                    <h3>Element active!</h3>
+                )}
             </section>
 
             {/* Events categories */}
